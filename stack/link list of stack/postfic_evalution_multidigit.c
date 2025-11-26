@@ -1,11 +1,12 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include<ctype.h>
 int main()
 {
     char expr[100];
     int stack[100], top = -1;
     printf("Enter a postfix expression: ");
-    scanf("%s", expr);
+    gets(expr);
     for(int i = 0; expr[i] != '\0'; i++)
     {
         
