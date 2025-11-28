@@ -57,7 +57,7 @@ int main()
     deQ(Q, &F, &R);
     deQ(Q, &F, &R);
     deQ(Q, &F, &R);
-    
+
     printf("Q elements are:\n");
     if(F == -1 && R == -1)
     {
