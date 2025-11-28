@@ -43,12 +43,21 @@ int main()
         enqueue(&front, &rear, data);
         scanf("%d", &data);
     }
-    printf("Dequeuing elements:\n");
-    while(front != NULL)
+    dequeue(&front, &rear);
+    printf("Queue elements are:\n");
+    N* temp = front;
+    while(temp != NULL)
     {
-        printf("%d\n", front->data);
-        dequeue(&front, &rear);
+        printf("%d\n", temp->data);
+        temp = temp->next;
     }
+    // printf("Dequeuing elements:\n");
+    
+    // while(front != NULL)
+    // {
+    //     printf("%d\n", front->data);
+    //     dequeue(&front, &rear);
+    // }
     return 0;
     
     
