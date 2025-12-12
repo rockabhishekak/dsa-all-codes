@@ -33,6 +33,22 @@ void inorder(Node* root) {
     cout << root->data << " ";
     inorder(root->right);
 }
+void preorder(Node* root) {
+    if (root == nullptr) {
+        return;
+    }
+    cout << root->data << " ";
+    preorder(root->left);
+    preorder(root->right);
+}
+void postorder(Node* root) {
+    if (root == nullptr) {
+        return;
+    }
+    postorder(root->left);
+    postorder(root->right);
+    cout << root->data << " ";
+}
 int main() {
     Node* root = nullptr;
     root = insert(root, 50);
@@ -45,6 +61,12 @@ int main() {
 
     cout << "Inorder traversal of the BST: ";
     inorder(root);
+    cout << endl;
+    cout << "Preorder traversal of the BST: ";
+    preorder(root);
+    cout << endl;
+    cout << "Postorder traversal of the BST: ";
+    postorder(root);
     cout << endl;
 
     return 0;
