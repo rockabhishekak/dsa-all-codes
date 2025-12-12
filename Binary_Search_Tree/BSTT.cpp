@@ -26,12 +26,15 @@ Node* insert(Node* root, int val) {
     return root;
 }
 void inorder(Node* root) {
-    if (root == nullptr) {
-        return;
+    // if (root == nullptr) {
+    //     return;
+    // }                               // this can also be used
+    if(root != nullptr){
+        inorder(root->left);
+        cout << root->data << " ";
+        inorder(root->right);
     }
-    inorder(root->left);
-    cout << root->data << " ";
-    inorder(root->right);
+    
 }
 void preorder(Node* root) {
     if (root == nullptr) {
