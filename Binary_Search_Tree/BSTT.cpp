@@ -25,6 +25,8 @@ Node* insert(Node* root, int val) {
     
     return root;
 }
+// Traversal methods
+// Inorder, Preorder, Postorder
 void inorder(Node* root) {
     // if (root == nullptr) {
     //     return;
@@ -52,6 +54,27 @@ void postorder(Node* root) {
     postorder(root->right);
     cout << root->data << " ";
 }
+
+// Search in BST
+Node* search(Node* root, int key, int &count) {
+    // Base Cases: root is null or key is present at root
+    if (root == nullptr || root->data == key) {
+        cout<<"Number of comparisons made: "<<count<<endl;
+        return root;
+    }
+    // Key is greater than root's key
+    else if (key > root->data) {
+        count++;
+        return search(root->right, key, count);
+    }
+    else if (key < root->data) {
+        count++;
+        return search(root->left, key, count);
+    }
+
+}
+
+
 int main() {
     Node* root = nullptr;
     root = insert(root, 50);
@@ -71,6 +94,19 @@ int main() {
     cout << "Postorder traversal of the BST: ";
     postorder(root);
     cout << endl;
+
+
+    // Search functionality can be tested here
+    int count=0;
+    int key=40;
+    struct Node* result = search(root, key, count);
+    if(result != nullptr){
+        cout << "Element " << key << " found in the BST." << endl;
+    }
+    else{
+        cout << "Element " << key << " not found in the BST." << endl;
+    }
+    cout<<"Number of comparisons made: "<<count<<endl;
 
     return 0;
 }
