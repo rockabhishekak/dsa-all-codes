@@ -25,6 +25,7 @@ Node* insert(Node* root, int val) {
     
     return root;
 }
+
 // Traversal methods
 // Inorder, Preorder, Postorder
 void inorder(Node* root) {
@@ -75,6 +76,58 @@ Node* search(Node* root, int key, int &count) {
 }
 
 
+// delete function can be added here
+struct Node* deleteNode(struct Node* root, int key) {
+    // Base Case
+    if (root == nullptr) {
+        return root;
+    }
+    // Recursive calls for ancestors of
+    // node to be deleted
+    else if (key < root->data) {
+        root->left = deleteNode(root->left, key);
+    }
+    else if (key > root->data) {
+        root->right = deleteNode(root->right, key);
+    
+    }
+    else{// if root->data ==key
+        //found the node to be deleted
+        if(root->left == NULL && root->right == NULL){
+            // case 1: node to be deleted is leaf node
+            delete root;
+            return nullptr;
+        }
+        else if(root->left == NULL){
+            // case 2: node to be deleted has only right child
+            struct Node* temp = root->right;
+            delete root;
+            return temp;
+        }
+        else if(root->right == NULL){
+            // case 2: node to be deleted has only left child
+            struct Node* temp = root->left;
+            delete root;
+            return temp;
+        }
+        else{
+            // case 3: node to be deleted has both left and right child
+            // find inorder successor (smallest in the right subtree)
+            struct Node* temp = root->right;
+            while(temp && temp->left != NULL){
+                temp = temp->left;
+            }
+            // copy the inorder successor's content to this node
+            root->data = temp->data;
+            // delete the inorder successor
+            root->right = deleteNode(root->right, temp->data);
+        }
+
+    }
+
+}
+
+
 int main() {
     Node* root = nullptr;
     root = insert(root, 50);
@@ -107,6 +160,19 @@ int main() {
         cout << "Element " << key << " not found in the BST." << endl;
     }
     cout<<"Number of comparisons made: "<<count<<endl;
+
+
+    // Deletion functionality can be tested here
+    int deleteKey = 20;
+    root = deleteNode(root, deleteKey);
+    cout << "Inorder traversal after deleting " << deleteKey << ": ";
+    inorder(root);
+    cout << endl;
+
+
+
+
+
 
     return 0;
 }

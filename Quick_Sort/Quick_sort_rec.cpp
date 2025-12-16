@@ -18,7 +18,7 @@ int partition(int arr[], int low, int high){
     int temp = arr[i];
     arr[i] = arr[high];
     arr[high] = temp;
-    i++;
+    // i++;
     return i;
 }
 void quick_sort(int arr[], int low, int high){
