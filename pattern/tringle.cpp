@@ -24,4 +24,8 @@ int main()
         
     }
 
+    // git rm --cached *.exe
+// git commit -m "remove exe files"
+// git push
+
 }
